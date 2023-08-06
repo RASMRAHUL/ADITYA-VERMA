@@ -1,0 +1,48 @@
+Count Occurences of Anagrams
+
+class Solution{
+public:
+    bool allZero(vector<int>&counter)
+    {
+        for(auto &c: counter)
+        {
+            if(c != 0)
+                return false;
+                
+        }
+        
+        return true;
+    }
+	int search(string pat, string txt) {
+	   int n = txt.length();
+	   vector<int> counter(26,0);
+	   for(int i = 0 ;i < pat.length(); i++)
+	   {
+	       char ch = pat[i];
+	       counter[ch - 'a']++;
+	   }
+	   int result = 0;
+	   int k = pat.length();
+	   int i = 0, j = 0;
+	   while( j < n)
+	   {
+	       counter[txt[j]-'a']--;
+	       
+	       if(j-i+1 == k)
+	       {
+    	       if(allZero(counter))
+    	       {
+    	           result++;
+    	       }
+    	       
+    	       counter[txt[i]-'a']++;
+    	       i++;
+	       }
+	       
+	       j++;
+	   }
+	   
+	   return result;
+	}
+
+};
